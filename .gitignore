@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/stm32f030f4_i2c_matrix_keypad/v15
+/Drivers
+/stm32f030f4_i2c_matrix_keypad/VisualGDB
+/VisualGDB/Debug
