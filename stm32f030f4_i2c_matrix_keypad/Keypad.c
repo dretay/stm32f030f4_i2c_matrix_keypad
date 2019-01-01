@@ -11,7 +11,7 @@ static unsigned int bitmap[KEYPAD_MAX_PINS];
 static unsigned int start_time = 0;
 static unsigned int debounce_time = 10;
 
-static char keymap[KEYPAD_MAX_PINS*KEYPAD_MAX_PINS];
+static char keymap[KEYPAD_MAX_PINS*KEYPAD_MAX_PINS+1];
 
 static Key key[LIST_MAX];
 
@@ -73,7 +73,7 @@ static bool add_col(GPIO_TypeDef* gpio_port, unsigned int gpio_pin)
 
 static void set_keymap(char* keymap_in)
 {
-	snprintf(keymap, KEYPAD_MAX_PINS*KEYPAD_MAX_PINS,"%s", keymap_in);
+	snprintf(keymap, KEYPAD_MAX_PINS*KEYPAD_MAX_PINS+1,"%s", keymap_in);
 }
 
 static void scan_keys(void) {	
@@ -83,7 +83,7 @@ static void scan_keys(void) {
 		for (int row = 0; row < keypad_size.rows; row++)
 		{	
 			bool pinstate = !HAL_GPIO_ReadPin(row_pins[row].gpio_port, row_pins[row].gpio_pin);
-
+			
 			bitWrite(bitmap[row], col, pinstate);	
 		}
 		HAL_GPIO_WritePin(col_pins[col].gpio_port, col_pins[col].gpio_pin, GPIO_PIN_SET);		
@@ -212,6 +212,10 @@ static char get_key(void)
 {
 	if (get_keys() && key[0].state_changed && (key[0].state == PRESSED))
 	{
+			char buffer[10];
+			snprintf(buffer, 10, "pressed!");
+			UartPrinter.println(buffer);
+		
 		return key[0].key_char;
 	}
 	return NO_KEY;
