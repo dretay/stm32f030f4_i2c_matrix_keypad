@@ -10,7 +10,7 @@
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * COPYRIGHT(c) 2018 STMicroelectronics
+  * COPYRIGHT(c) 2019 STMicroelectronics
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -48,6 +48,23 @@
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
+
+#define Row1_Pin GPIO_PIN_0
+#define Row1_GPIO_Port GPIOA
+#define Row2_Pin GPIO_PIN_1
+#define Row2_GPIO_Port GPIOA
+#define Row3_Pin GPIO_PIN_3
+#define Row3_GPIO_Port GPIOA
+#define Row4_Pin GPIO_PIN_4
+#define Row4_GPIO_Port GPIOA
+#define Col1_Pin GPIO_PIN_5
+#define Col1_GPIO_Port GPIOA
+#define Col2_Pin GPIO_PIN_6
+#define Col2_GPIO_Port GPIOA
+#define Col3_Pin GPIO_PIN_7
+#define Col3_GPIO_Port GPIOA
+#define Col4_Pin GPIO_PIN_1
+#define Col4_GPIO_Port GPIOB
 
 /* ########################## Assert Selection ############################## */
 /**

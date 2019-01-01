@@ -1,0 +1,46 @@
+Configuration	stm32f030f4_i2c_matrix_keypad
+STM32CubeMX 	4.26.1
+Date	12/31/2018
+MCU	STM32F030F4Px
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+I2C1	I2C	I2C1_SCL	PA9
+I2C1	I2C	I2C1_SDA	PA10
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+USART1	Single Wire (Half-Duplex)	USART1_TX	PA2
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+8	PA2	USART1_TX	
+17	PA9	I2C1_SCL	
+18	PA10	I2C1_SDA	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : stm32f030f4_i2c_matrix_keypad
+Project Folder : C:\Users\Drew\Source\Repos\stm32f030f4_i2c_matrix_keypad
+Toolchain / IDE : Other Toolchains (GPDSC)
+Firmware Package Name and Version : STM32Cube FW_F0 V1.9.0
+
+
+Code Generation Settings : 
+STM32Cube Firmware Library Package : Copy all used libraries into the project folder
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : No
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+

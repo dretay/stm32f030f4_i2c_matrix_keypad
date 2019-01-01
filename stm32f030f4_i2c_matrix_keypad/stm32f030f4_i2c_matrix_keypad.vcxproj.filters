@@ -34,6 +34,18 @@
     <Filter Include="Source files\cubemx">
       <UniqueIdentifier>{e93fbb00-f84e-4310-ba2c-c8d7351e6745}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\util">
+      <UniqueIdentifier>{caca718d-84ea-4df6-a375-8c8c19b78db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\util">
+      <UniqueIdentifier>{714999f6-52fa-4eea-9595-8165c84f81c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\periph">
+      <UniqueIdentifier>{de368983-3bf7-4779-bbcb-c923e806a822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\periph">
+      <UniqueIdentifier>{6628a159-1bcb-4f05-ba79-898a203be616}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="stm32.props">
@@ -488,6 +500,18 @@
     <ClInclude Include="..\Inc\stm32f0xx_it.h">
       <Filter>Header files\cubemx</Filter>
     </ClInclude>
+    <ClInclude Include="application.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="UartPrinter.h">
+      <Filter>Header files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="bithelper.h">
+      <Filter>Header files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Keypad.h">
+      <Filter>Header files\periph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\main.c">
@@ -501,6 +525,15 @@
     </ClCompile>
     <ClCompile Include="..\Src\system_stm32f0xx.c">
       <Filter>Source files\cubemx</Filter>
+    </ClCompile>
+    <ClCompile Include="application.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="UartPrinter.c">
+      <Filter>Source files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Keypad.c">
+      <Filter>Source files\periph</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
