@@ -130,12 +130,12 @@ static void next_key_state(int idx, bool button) {
 		if (button == CLOSED) {
 			transition_to(idx, PRESSED);
 			hold_timer = HAL_GetTick();
-		}		// Get ready for next HOLD state.
+		}		
 		break;
 	case PRESSED:
-		if ((HAL_GetTick() - hold_timer) > hold_time)	// Waiting for a key HOLD...
+		if ((HAL_GetTick() - hold_timer) > hold_time)
 			transition_to(idx, HOLD);
-		else if (button == OPEN)				// or for a key to be RELEASED.
+		else if (button == OPEN)	
 			transition_to(idx, RELEASED);
 		break;
 	case HOLD:
@@ -162,34 +162,29 @@ static bool update_list() {
 	}
 
 	
-	// Add new keys to empty slots in the key list.
 	for(int r = 0 ; r < keypad_size.rows; r++) {		
 		for (int c = 0; c < keypad_size.columns; c++) {
 			bool button = bitRead(bitmap[r], c);
 			char keyChar = keymap[r * keypad_size.columns + c];
 			int keyCode = r * keypad_size.columns + c;
 			int idx = find_in_list_by_keycode(keyCode);
-			// Key is already on the list so set its next state.
 			if(idx > -1) {
 				next_key_state(idx, button);
 			}
-			// Key is NOT on the list so add it.
 			if((idx == -1) && button) {
 				for (int i = 0; i < LIST_MAX; i++) {
-					// Find an empty slot or don't add key to list.
 					if (key[i].key_char == NO_KEY) {
 						key[i].key_char = keyChar;
 						key[i].key_code = keyCode;
-						key[i].state = IDLE; 		// Keys NOT on the list have an initial state of IDLE.
+						key[i].state = IDLE; 	
 						next_key_state(i, button);
-						break;	// Don't fill all the empty slots with the same key.
+						break;	
 					}
 				}
 			}
 		}
 	}
 
-	// Report if the user changed the state of any key.
 	for(int i = 0 ; i < LIST_MAX ; i++) {
 		if (key[i].state_changed) anyActivity = true;
 	}
@@ -211,11 +206,7 @@ static bool get_keys(void)
 static char get_key(void)
 {
 	if (get_keys() && key[0].state_changed && (key[0].state == PRESSED))
-	{
-			char buffer[10];
-			snprintf(buffer, 10, "pressed!");
-			UartPrinter.println(buffer);
-		
+	{	
 		return key[0].key_char;
 	}
 	return NO_KEY;

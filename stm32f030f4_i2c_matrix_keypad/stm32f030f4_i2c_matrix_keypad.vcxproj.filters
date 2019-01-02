@@ -512,6 +512,15 @@
     <ClInclude Include="Keypad.h">
       <Filter>Header files\periph</Filter>
     </ClInclude>
+    <ClInclude Include="SerialCommandAdapter.h">
+      <Filter>Header files\periph</Filter>
+    </ClInclude>
+    <ClInclude Include="I2CSerialCommandAdapter.h">
+      <Filter>Header files\periph</Filter>
+    </ClInclude>
+    <ClInclude Include="SerialCommand.h">
+      <Filter>Header files\periph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\main.c">
@@ -533,6 +542,12 @@
       <Filter>Source files\util</Filter>
     </ClCompile>
     <ClCompile Include="Keypad.c">
+      <Filter>Source files\periph</Filter>
+    </ClCompile>
+    <ClCompile Include="I2CSerialCommandAdapter.c">
+      <Filter>Source files\periph</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialCommand.c">
       <Filter>Source files\periph</Filter>
     </ClCompile>
   </ItemGroup>

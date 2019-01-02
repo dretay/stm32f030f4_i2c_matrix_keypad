@@ -6,3 +6,4 @@
 /Drivers
 /stm32f030f4_i2c_matrix_keypad/VisualGDB
 /VisualGDB/Debug
+/VisualGDB/Release

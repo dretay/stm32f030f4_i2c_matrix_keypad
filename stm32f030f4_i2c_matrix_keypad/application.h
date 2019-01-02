@@ -7,6 +7,8 @@
 
 #include "UartPrinter.h"
 #include "Keypad.h"
+#include "SerialCommand.h"
+#include "I2CSerialCommandAdapter.h"
 
 struct application
 {

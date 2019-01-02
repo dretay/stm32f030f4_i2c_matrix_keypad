@@ -1,4 +1,20 @@
 #include "application.h"
+
+static char latest_keypad = '\0';
+static void poll_keypad(void)
+{
+	char key = Keypad.get_key();
+	if (key)
+	{
+		latest_keypad = key;
+		UartPrinter.println(&key);
+	}
+}
+static bool get_keypad(char* tx_buffer)
+{
+	tx_buffer[0] = latest_keypad;
+	return true;
+}
 //main application loop
 static void run(void)
 {
@@ -15,14 +31,19 @@ static void run(void)
 	Keypad.set_keymap("0123456789ABCDEF");
 
 	UartPrinter.println("Initialized!");
+
+	SerialCommand.register_command(0x00, &get_keypad);
+	SerialCommand.configure(I2CSerialCommandAdapter.configure(), &poll_keypad);
 	
 	while (true)
 	{	
-		char key = Keypad.get_key();
-		if (key)
-		{
-			UartPrinter.println(&key);
-		}
+		/*
+		
+I2C>[0x20 0x00]
+I2C>[0x21 rrrr]
+
+		*/
+		SerialCommand.next();
 	}
 }
 

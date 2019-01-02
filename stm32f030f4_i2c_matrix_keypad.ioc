@@ -1,5 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
 File.Version=6
+I2C1.IPParameters=OwnAddress
+I2C1.OwnAddress=0x10
 KeepUserPlacement=false
 Mcu.Family=STM32F0
 Mcu.IP0=I2C1
@@ -31,6 +33,7 @@ Mcu.UserName=STM32F030F4Px
 MxCube.Version=4.26.1
 MxDb.Version=DB.4.0.261
 NVIC.HardFault_IRQn=true\:0\:0\:false\:false\:true\:false
+NVIC.I2C1_IRQn=true\:0\:0\:false\:false\:true\:true
 NVIC.NonMaskableInt_IRQn=true\:0\:0\:false\:false\:true\:false
 NVIC.PendSV_IRQn=true\:0\:0\:false\:false\:true\:false
 NVIC.SVC_IRQn=true\:0\:0\:false\:false\:true\:false

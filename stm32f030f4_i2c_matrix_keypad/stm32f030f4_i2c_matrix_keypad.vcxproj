@@ -55,7 +55,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
     <ClCompile>
       <CLanguageStandard>C99</CLanguageStandard>
+      <AdditionalIncludeDirectories>../Inc;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript />
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
   </ItemGroup>
@@ -68,14 +76,19 @@
     <ClCompile Include="..\Src\stm32f0xx_it.c" />
     <ClCompile Include="..\Src\system_stm32f0xx.c" />
     <ClCompile Include="application.c" />
+    <ClCompile Include="I2CSerialCommandAdapter.c" />
     <ClCompile Include="Keypad.c" />
+    <ClCompile Include="SerialCommand.c" />
     <ClCompile Include="UartPrinter.c" />
     <ClInclude Include="..\Inc\main.h" />
     <ClInclude Include="..\Inc\stm32f0xx_hal_conf.h" />
     <ClInclude Include="..\Inc\stm32f0xx_it.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="bithelper.h" />
+    <ClInclude Include="I2CSerialCommandAdapter.h" />
     <ClInclude Include="Keypad.h" />
+    <ClInclude Include="SerialCommand.h" />
+    <ClInclude Include="SerialCommandAdapter.h" />
     <ClInclude Include="UartPrinter.h" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F0xxxx\StartupFiles\startup_stm32f030x6.c" />
