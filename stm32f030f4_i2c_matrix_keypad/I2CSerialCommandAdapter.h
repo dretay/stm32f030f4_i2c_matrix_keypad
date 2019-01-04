@@ -8,10 +8,8 @@
 
 #include "stm32f0xx_hal.h"
 
-extern I2C_HandleTypeDef hi2c1;
-
 struct i2cserialcommandadapter {	
-	SerialCommandAdapter*(*configure)(void);		
+	SerialCommandAdapter*(*configure)(I2C_HandleTypeDef* i2c_handle_in);		
 };
 
 extern const struct i2cserialcommandadapter I2CSerialCommandAdapter;

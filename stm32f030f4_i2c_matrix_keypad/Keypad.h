@@ -1,20 +1,29 @@
 #pragma once
 
-#include "bithelper.h"
-#include "UartPrinter.h"
-
+//HAL includes
 #include "stm32f0xx_hal.h"
 
+//STL includes
 #include <stdbool.h>
 
+//project includes
+#include "bithelper.h"
+
+//keypad constants 
 #define KEYPAD_MAX_PINS 4
-#define LIST_MAX 10
+#define KEYPAD_LIST_MAX 10
+#define KEYPAD_DEBOUNCE_TIME 10
+#define KEYPAD_HOLD_TIME 500
 
-#define OPEN false
-#define CLOSED true
+//define shortcuts
+#define KEYPAD_OPEN false
+#define KEYPAD_CLOSED true
+#define KEYPAD_NO_KEY '\0'
 
-const static char NO_KEY = '\0';
+//internal enum
+typedef enum{ IDLE, PRESSED, HOLD, RELEASED } KeyState;
 
+//internal keypad structs
 typedef struct
 {
 	unsigned int gpio_pin;
@@ -22,20 +31,18 @@ typedef struct
 } Pin;
 typedef struct
 {
-	int rows;
-	int columns;
-} KeypadSize;
-
-typedef enum{ IDLE, PRESSED, HOLD, RELEASED } KeyState;
-
+	int num_rows;
+	int num_columns;
+} KeypadConfig;
 typedef struct
 {
-	char key_char;
-	int key_code;
+	char mapping;
+	int coordinate;
 	KeyState state;
-	bool state_changed;
+	bool dirty;
 } Key;
 
+//interface to export
 struct keypad {
 	bool(*add_row)(GPIO_TypeDef* gpio_port, unsigned int gpio_pin);
 	bool(*add_col)(GPIO_TypeDef* gpio_port, unsigned int gpio_pin);

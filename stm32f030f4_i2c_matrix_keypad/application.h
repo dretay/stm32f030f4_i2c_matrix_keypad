@@ -10,6 +10,8 @@
 #include "SerialCommand.h"
 #include "I2CSerialCommandAdapter.h"
 
+extern I2C_HandleTypeDef hi2c1;
+
 struct application
 {
 	void(*run)(void);

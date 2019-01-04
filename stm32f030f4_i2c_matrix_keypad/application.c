@@ -33,7 +33,7 @@ static void run(void)
 	UartPrinter.println("Initialized!");
 
 	SerialCommand.register_command(0x00, &get_keypad);
-	SerialCommand.configure(I2CSerialCommandAdapter.configure(), &poll_keypad);
+	SerialCommand.configure(I2CSerialCommandAdapter.configure(&hi2c1), &poll_keypad);
 	
 	while (true)
 	{	
