@@ -523,9 +523,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Src\main.c">
-      <Filter>Source files\cubemx</Filter>
-    </ClCompile>
     <ClCompile Include="..\Src\stm32f0xx_hal_msp.c">
       <Filter>Source files\cubemx</Filter>
     </ClCompile>
@@ -549,6 +546,9 @@
     </ClCompile>
     <ClCompile Include="SerialCommand.c">
       <Filter>Source files\periph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Src\main.c">
+      <Filter>Source files\cubemx</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

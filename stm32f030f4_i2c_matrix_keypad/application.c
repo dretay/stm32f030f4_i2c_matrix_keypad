@@ -38,10 +38,20 @@ static void run(void)
 	while (true)
 	{	
 		/*
-		
-I2C>[0x20 0x00]
-I2C>[0x21 rrrr]
+		I2C>(1)
+		Searching I2C address space. Found devices at:
+		0x20(0x10 W)
+		I2C>[0x20 0x00]
+		I2C>[0x21 rrrr]
 
+		*/
+
+		/*
+		todo: 
+		1) general cleanup (esp var names and array sizes)
+		2) add timeout for i2c resetting 
+		3) add irq pin
+		4) same as rotary encoder - resettable address
 		*/
 		SerialCommand.next();
 	}
