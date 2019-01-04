@@ -1,17 +1,22 @@
 #include "application.h"
 
 static char latest_keypad = '\0';
+static bool irq_attn_status = false;
 static void poll_keypad(void)
 {
 	char key = Keypad.get_key();
 	if (key)
 	{
+		irq_attn_status = true;
+		HAL_GPIO_WritePin(Keypad_IRQ_GPIO_Port, Keypad_IRQ_Pin, GPIO_PIN_SET);
 		latest_keypad = key;
 		UartPrinter.println(&key);
 	}
 }
 static bool get_keypad(char* tx_buffer)
 {
+	irq_attn_status = false;
+	HAL_GPIO_WritePin(Keypad_IRQ_GPIO_Port, Keypad_IRQ_Pin, GPIO_PIN_RESET);
 	tx_buffer[0] = latest_keypad;
 	return true;
 }
@@ -33,6 +38,7 @@ static void run(void)
 	UartPrinter.println("Initialized!");
 
 	SerialCommand.register_command(0x00, &get_keypad);
+	//register IRQ pin here?
 	SerialCommand.configure(I2CSerialCommandAdapter.configure(&hi2c1), &poll_keypad);
 	
 	while (true)
@@ -48,7 +54,6 @@ static void run(void)
 
 		/*
 		todo: 
-		1) general cleanup (esp var names and array sizes)
 		2) add timeout for i2c resetting 
 		3) add irq pin
 		4) same as rotary encoder - resettable address

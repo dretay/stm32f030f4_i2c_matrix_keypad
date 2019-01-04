@@ -49,6 +49,8 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define Keypad_IRQ_Pin GPIO_PIN_1
+#define Keypad_IRQ_GPIO_Port GPIOF
 #define Row1_Pin GPIO_PIN_0
 #define Row1_GPIO_Port GPIOA
 #define Row2_Pin GPIO_PIN_1

@@ -6,7 +6,7 @@ static I2C_HandleTypeDef *i2c_handle;
 static void(*write_callback)(void);
 static void(*read_callback)(void);
 
-static void write_it(char* buffer, int size, void(*callback)(void)) {
+static void write_it(const char* buffer, int size, void(*callback)(void)) {
 	write_callback = callback;
 	UartPrinter.println("ready to tx");
 

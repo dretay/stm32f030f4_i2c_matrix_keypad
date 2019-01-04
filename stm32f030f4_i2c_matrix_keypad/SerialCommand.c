@@ -79,7 +79,6 @@ static void next(void)
 {
 	serial_adapter->read_it(serial_command_rx_buffer, SERIAL_COMMAND_RX_BUFFER_SIZE, &rx_callback);
 	serial_command_read_status = PENDING;
-	UartPrinter.println("next i2c loop");
 
 	while (serial_command_read_status !=  READY)
 	{
