@@ -521,6 +521,12 @@
     <ClInclude Include="SerialCommand.h">
       <Filter>Header files\periph</Filter>
     </ClInclude>
+    <ClInclude Include="Flash.h">
+      <Filter>Header files\periph</Filter>
+    </ClInclude>
+    <ClInclude Include="flashpages.h">
+      <Filter>Header files\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Src\stm32f0xx_hal_msp.c">
@@ -550,5 +556,13 @@
     <ClCompile Include="..\Src\main.c">
       <Filter>Source files\cubemx</Filter>
     </ClCompile>
+    <ClCompile Include="Flash.c">
+      <Filter>Source files\periph</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <LinkerScript Include="STM32F030F4_flash.lds">
+      <Filter>Source files</Filter>
+    </LinkerScript>
   </ItemGroup>
 </Project>

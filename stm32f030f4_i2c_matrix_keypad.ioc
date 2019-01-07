@@ -1,7 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
 File.Version=6
 I2C1.IPParameters=OwnAddress
-I2C1.OwnAddress=0x10
+I2C1.OwnAddress=0x20
 KeepUserPlacement=false
 Mcu.Family=STM32F0
 Mcu.IP0=I2C1
@@ -120,13 +120,15 @@ ProjectManager.StackSize=0x400
 ProjectManager.TargetToolchain=Other Toolchains (GPDSC)
 ProjectManager.ToolChainLocation=
 ProjectManager.UnderRoot=false
-ProjectManager.functionlistsort=1-MX_GPIO_Init-GPIO-false-HAL-true,2-SystemClock_Config-RCC-false-HAL-false,3-MX_I2C1_Init-I2C1-false-HAL-true,4-MX_USART1_UART_Init-USART1-false-HAL-true
+ProjectManager.functionlistsort=1-MX_GPIO_Init-GPIO-false-HAL-true,2-SystemClock_Config-RCC-false-HAL-false,3-MX_USART1_UART_Init-USART1-false-HAL-true,4-MX_I2C1_Init-I2C1-false-HAL-true
 RCC.FamilyName=M
-RCC.IPParameters=FamilyName,PLLCLKFreq_Value,TimSysFreq_Value
+RCC.IPParameters=FamilyName,PLLCLKFreq_Value,TimSysFreq_Value,Usart1ClockSelection
 RCC.PLLCLKFreq_Value=8000000
 RCC.TimSysFreq_Value=8000000
+RCC.Usart1ClockSelection=RCC_USART1CLKSOURCE_HSI
 USART1.BaudRate=9600
-USART1.IPParameters=VirtualMode-Half_duplex(single_wire_mode),BaudRate
+USART1.IPParameters=VirtualMode-Half_duplex(single_wire_mode),BaudRate,Mode
+USART1.Mode=MODE_TX
 USART1.VirtualMode-Half_duplex(single_wire_mode)=VM_ASYNC
 VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick

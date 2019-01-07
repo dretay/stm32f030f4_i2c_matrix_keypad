@@ -10,13 +10,13 @@ static unsigned int serial_command_count = 0;
 SerialCommandAdapter *serial_adapter;
 static void(*idle_fn)(void);
 
-#define SERIAL_COMMAND_RX_BUFFER_SIZE  1
+#define SERIAL_COMMAND_RX_BUFFER_SIZE  2
 static char serial_command_rx_buffer[SERIAL_COMMAND_RX_BUFFER_SIZE+1];
 
 #define SERIAL_COMMAND_TX_BUFFER_SIZE 4
-static char i2c_tx_buffer[SERIAL_COMMAND_TX_BUFFER_SIZE+1];
+static char serial_command_tx_buffer[SERIAL_COMMAND_TX_BUFFER_SIZE+1];
 
-static bool(*command_processing_function)(char* tx_buffer) = NULL;
+static bool(*command_processing_function)(char* rx_buffer, char* tx_buffer) = NULL;
 
 //todo: this should be "a lower level" implementation that handles more transport coordination
 //higher level stuff should happen in a concrete implementor?
@@ -40,11 +40,11 @@ static int get_usage_count(unsigned int* usage_mask)
 	return i;
 }
 //todo: this is still not right
-static bool register_command(char* command_in, void* function_in) {
+static bool register_command(int command_in, void* function_in) {
 	uint8_t idx;	
 	idx = get_unused_idx(&SerialCommand_Command_Usage_Mask);
 	if (idx_valid(idx, &SerialCommand_Command_Usage_Mask)) {
-		strncpy(commands[idx].command, command_in, 8);
+		commands[idx].command[0] = command_in;
 		commands[idx].function = function_in;				
 		serial_command_count = get_usage_count(&SerialCommand_Command_Usage_Mask);
 		return true;
@@ -79,17 +79,19 @@ static void next(void)
 {
 	serial_adapter->read_it(serial_command_rx_buffer, SERIAL_COMMAND_RX_BUFFER_SIZE, &rx_callback);
 	serial_command_read_status = PENDING;
+	UartPrinter.println("pending");
 
 	while (serial_command_read_status !=  READY)
 	{
 		switch (serial_command_read_status)
 		{
 		case PROCESS:
+			UartPrinter.println("processing");
 			if (command_processing_function != NULL)
 			{
-				if (command_processing_function(i2c_tx_buffer))
+				if (command_processing_function(serial_command_rx_buffer, serial_command_tx_buffer))
 				{
-					serial_adapter->write_it(i2c_tx_buffer, SERIAL_COMMAND_TX_BUFFER_SIZE, &tx_callback);
+					serial_adapter->write_it(serial_command_tx_buffer, SERIAL_COMMAND_TX_BUFFER_SIZE, &tx_callback);
 					serial_command_read_status = RESPOND;
 					break;
 				}

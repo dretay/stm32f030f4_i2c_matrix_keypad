@@ -7,6 +7,7 @@ static char* uart_tx_cr = "\r\n";
 //it needs to be echo'd separate from the string. if it becomes a problem maybe make this flaggable?
 static void println(char* line)
 {
+#ifdef HAL_UART_MODULE_ENABLED
 	int str_len = 0;	
 	snprintf(uart_tx_buffer, UART_BUFFER_SIZE, "%s", line);
 	str_len = strcspn(uart_tx_buffer, "\0");
@@ -18,6 +19,7 @@ static void println(char* line)
 	{
 		Error_Handler();
 	}
+#endif
 }
 
 const struct uartprinter UartPrinter = { 

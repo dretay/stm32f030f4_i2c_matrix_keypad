@@ -13,14 +13,14 @@
 
 typedef struct {
 	char command[8];
-	bool(*function)(char* tx_buffer);
+	bool(*function)(char* rx_buffer, char* tx_buffer);
 } SerialCommand_Command;
 
 #define SERIAL_COMMAND_CNT 11
 
 struct serialcommand {
 	void(*configure)(SerialCommandAdapter*, void(*idle_fn_in)(void));	
-	bool(*register_command)(char* command_in, void* function_in);	
+	bool(*register_command)(int command_in, void* function_in);	
 	void(*next)(void);	
 	
 };

@@ -12,7 +12,9 @@
 //#define LOG(...)
 //#endif
 
+#ifdef HAL_UART_MODULE_ENABLED
 extern UART_HandleTypeDef huart1;
+#endif
 
 struct uartprinter
 {
